@@ -59,4 +59,44 @@ export default function Home() {
       </div>
 
       {/* 카테고리 */}
-      <div className="max-w-7xl
+      <div className="max-w-7xl mx-auto px-6 mb-8 flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        {['ALL', 'OUTER', 'TOP', 'BOTTOM', 'ACC'].map((cat, idx) => (
+          <button key={cat} className={`px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition ${idx === 0 ? 'bg-[#6D6296] text-white' : 'bg-white text-slate-500 border border-slate-200 hover:border-[#6D6296] hover:text-[#6D6296]'}`}>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* 상품 목록 */}
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10">
+          {products.map((product) => (
+            <Link href={`/product/${product.id}`} key={product.id} className="group cursor-pointer block">
+              <div className="aspect-[3/4] w-full overflow-hidden rounded-xl bg-gray-200 mb-3 relative shadow-sm">
+                
+                {/* 100% 꽉 찬 이미지 (object-cover) */}
+                <img 
+                  src={product.img} 
+                  alt={product.name} 
+                  className="h-full w-full object-cover group-hover:scale-105 transition duration-500 ease-in-out"
+                  onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/600x800?text=No+Image"; }} // 혹시라도 깨지면 대체 이미지
+                />
+                
+                <div className="absolute top-3 left-3 bg-white/90 text-slate-800 text-[10px] font-bold px-2 py-1 rounded shadow-sm">
+                  {product.category}
+                </div>
+              </div>
+              <h3 className="text-sm md:text-base font-bold text-slate-800 leading-tight mb-1 group-hover:text-[#6D6296] transition">
+                {product.name}
+              </h3>
+              <p className="text-xs text-slate-400 mb-1">{product.subName}</p>
+              <p className="text-sm font-bold text-[#6D6296]">
+                {product.price}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
