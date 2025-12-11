@@ -1,56 +1,30 @@
 import React from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Star, Heart, ArrowRight } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
+
+// 상품 데이터 (사진과 가격을 미리 적어둠)
+const products = [
+  { id: 1, name: '포근한 니트', price: '49,900원', img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop' },
+  { id: 2, name: '천연 가죽 가방', price: '129,000원', img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop' },
+  { id: 3, name: '데일리 스니커즈', price: '89,000원', img: 'https://images.unsplash.com/photo-1560769629-975e13f0c470?q=80&w=800&auto=format&fit=crop' },
+];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-700">
+    <div className="min-h-screen bg-white text-slate-800 font-sans pb-20">
       
-      {/* 1. 상단 메뉴 (헤더) */}
-      <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+      {/* 헤더 */}
+      <header className="fixed w-full bg-white/90 backdrop-blur-md z-50 border-b border-slate-100 shadow-sm">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="h-6 w-6 text-indigo-400" />
-            <span className="font-bold text-xl text-slate-800">MyShop</span>
+            <ShoppingBag className="h-6 w-6 text-indigo-600" />
+            <span className="font-bold text-xl tracking-tight">MyPastelShop</span>
           </div>
-          
-          {/* 로그인 버튼이 안 보이면 로그인하러 가게 유도 */}
-          <Link href="/login">
-            <button className="bg-indigo-400 hover:bg-indigo-500 text-white px-4 py-2 rounded-full font-bold text-sm transition">
-              로그인 / 회원가입
-            </button>
+          <Link href="/login" className="text-sm font-bold text-slate-500 hover:text-indigo-600 transition">
+            로그인
           </Link>
         </div>
       </header>
 
-      {/* 2. 메인 배너 */}
-      <section className="pt-32 pb-20 px-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
-          쇼핑이 <span className="text-indigo-500">즐거워지는</span> 순간
-        </h1>
-        <p className="text-lg text-slate-500 mb-8">
-          감성적인 아이템을 만나보세요.
-        </p>
-        <div className="flex justify-center gap-4">
-          <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-slate-800 transition">
-            상품 구경하기
-          </button>
-        </div>
-      </section>
-
-      {/* 3. 상품 예시 (3개) */}
-      <section className="py-10 max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-        {[1, 2, 3].map((item) => (
-          <div key={item} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
-            <div className="h-40 bg-slate-100 rounded-xl mb-4 flex items-center justify-center text-slate-400">
-              상품 이미지 {item}
-            </div>
-            <h3 className="font-bold text-lg mb-1">감성 아이템 {item}호</h3>
-            <p className="text-indigo-500 font-bold">29,900원</p>
-          </div>
-        ))}
-      </section>
-
-    </div>
-  );
-}
+      {/* 메인 배너 */}
+      <div className="pt-32 pb
