@@ -1,41 +1,56 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ShoppingBag, Star, Heart, ArrowRight } from 'lucide-react';
 
-export default function LoginPage() {
+export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-      <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-indigo-50 border border-slate-100 max-w-sm w-full">
-        
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-slate-700 mb-2">로그인</h1>
-          <p className="text-slate-400 text-sm">부드러운 쇼핑을 시작해보세요.</p>
-        </div>
-
-        <div className="space-y-4">
-          <input 
-            type="email" 
-            placeholder="이메일" 
-            className="w-full px-5 py-4 bg-slate-50 rounded-xl text-slate-700 outline-none focus:ring-2 focus:ring-indigo-100 transition"
-          />
-          <input 
-            type="password" 
-            placeholder="비밀번호" 
-            className="w-full px-5 py-4 bg-slate-50 rounded-xl text-slate-700 outline-none focus:ring-2 focus:ring-indigo-100 transition"
-          />
-        </div>
-
-        <button className="w-full mt-8 bg-indigo-300 hover:bg-indigo-400 text-white py-4 rounded-xl font-bold text-lg transition shadow-md shadow-indigo-100">
-          로그인 하기
-        </button>
-
-        <div className="mt-8 pt-8 border-t border-slate-50 text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition text-sm font-medium">
-            <ArrowLeft className="h-4 w-4" /> 메인으로 돌아가기
+    <div className="min-h-screen bg-slate-50 text-slate-700">
+      
+      {/* 1. 상단 메뉴 (헤더) */}
+      <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <ShoppingBag className="h-6 w-6 text-indigo-400" />
+            <span className="font-bold text-xl text-slate-800">MyShop</span>
+          </div>
+          
+          {/* 로그인 버튼이 안 보이면 로그인하러 가게 유도 */}
+          <Link href="/login">
+            <button className="bg-indigo-400 hover:bg-indigo-500 text-white px-4 py-2 rounded-full font-bold text-sm transition">
+              로그인 / 회원가입
+            </button>
           </Link>
         </div>
+      </header>
 
-      </div>
+      {/* 2. 메인 배너 */}
+      <section className="pt-32 pb-20 px-4 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
+          쇼핑이 <span className="text-indigo-500">즐거워지는</span> 순간
+        </h1>
+        <p className="text-lg text-slate-500 mb-8">
+          감성적인 아이템을 만나보세요.
+        </p>
+        <div className="flex justify-center gap-4">
+          <button className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-slate-800 transition">
+            상품 구경하기
+          </button>
+        </div>
+      </section>
+
+      {/* 3. 상품 예시 (3개) */}
+      <section className="py-10 max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+        {[1, 2, 3].map((item) => (
+          <div key={item} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+            <div className="h-40 bg-slate-100 rounded-xl mb-4 flex items-center justify-center text-slate-400">
+              상품 이미지 {item}
+            </div>
+            <h3 className="font-bold text-lg mb-1">감성 아이템 {item}호</h3>
+            <p className="text-indigo-500 font-bold">29,900원</p>
+          </div>
+        ))}
+      </section>
+
     </div>
   );
 }
