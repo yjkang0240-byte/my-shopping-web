@@ -1,46 +1,29 @@
-'use client';
 import React from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { ShoppingBag } from 'lucide-react';
 
-export default function ProductDetail() {
-  const params = useParams();
-  const id = Number(params.id);
-
-  // 데이터 (메인과 동일)
-  const categories = [
-    { name: '캐시미어 니트', price: '49,900원', desc: '부드러운 촉감의 니트입니다.', img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop' },
-    { name: '천연 가죽 백', price: '129,000원', desc: '고급스러운 가죽 가방입니다.', img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop' },
-    { name: '러닝 스니커즈', price: '89,000원', desc: '편안한 러닝화입니다.', img: 'https://images.unsplash.com/photo-1560769629-975e13f0c470?q=80&w=800&auto=format&fit=crop' },
-    { name: '데님 자켓', price: '79,000원', desc: '어디에나 어울리는 자켓입니다.', img: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=800&auto=format&fit=crop' },
-    { name: '아날로그 시계', price: '159,000원', desc: '심플한 디자인의 시계입니다.', img: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=800&auto=format&fit=crop' },
-  ];
-
-  const category = categories[(id - 1) % categories.length];
-
-  if (!category || isNaN(id)) {
-    return <div className="p-10 text-center">상품을 찾을 수 없습니다.</div>;
-  }
+export default function Home() {
+  // 상품 50개 자동 생성 (파스텔 톤에 어울리는 랜덤 이미지 사용)
+  const products = Array.from({ length: 50 }).map((_, i) => ({
+    id: i + 1,
+    name: `감성 아이템 ${i + 1}호`,
+    price: `${(i + 1) * 1200}원`,
+    // 이미지가 무조건 나오도록 안정적인 주소를 사용했습니다
+    img: `https://picsum.photos/seed/${i + 100}/400/500` 
+  }));
 
   return (
-    <div className="min-h-screen bg-white pb-20">
-      {/* 상단 네비게이션 */}
-      <div className="p-4 border-b">
-        <Link href="/" className="text-gray-500 font-bold">← 뒤로가기</Link>
-      </div>
-
-      <div className="max-w-4xl mx-auto p-6 grid md:grid-cols-2 gap-8">
-        <img src={category.img} className="w-full rounded-lg shadow-md" />
-        <div>
-          <h1 className="text-3xl font-bold mb-2">{category.name} {id}호</h1>
-          <p className="text-2xl text-blue-600 font-bold mb-6">{category.price}</p>
-          <p className="text-gray-600 mb-8 leading-relaxed">{category.desc}</p>
-          
-          <button className="w-full bg-black text-white py-4 rounded-lg font-bold text-lg hover:bg-gray-800">
-            구매하기
-          </button>
+    <div className="min-h-screen bg-[#FDFBF7] text-slate-600 font-sans pb-20">
+      
+      {/* 1. 헤더 (부드러운 화이트 & 연보라) */}
+      <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-100 h-16 flex items-center justify-between px-6 shadow-sm">
+        <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-[#8E86B5]">
+          <ShoppingBag className="h-6 w-6" /> MyPastelShop
         </div>
-      </div>
-    </div>
-  );
-}
+        <Link href="/login" className="px-5 py-2 bg-[#8E86B5] text-white rounded-full text-sm font-bold hover:bg-[#7A72A3] transition shadow-md">
+          로그인
+        </Link>
+      </header>
+
+      {/* 2. 메인 배너 (파스텔 그라데이션) */}
+      <div className="pt-32 pb-16 text-center px-4 bg-gradient-to-b from-

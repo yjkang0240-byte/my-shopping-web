@@ -1,44 +1,29 @@
 import React from 'react';
 import Link from 'next/link';
+import { ShoppingBag } from 'lucide-react';
 
 export default function Home() {
-  // 강제로 사진 50개 생성 (인터넷에 있는 랜덤 이미지 끌어오기)
+  // 상품 50개 자동 생성 (파스텔 톤에 어울리는 랜덤 이미지 사용)
   const products = Array.from({ length: 50 }).map((_, i) => ({
     id: i + 1,
-    name: `상품 ${i + 1}호`,
-    price: `${(i + 1) * 1000}원`,
-    // 이 주소는 무조건 이미지가 나옵니다
-    img: `https://picsum.photos/seed/${i + 1}/300/300`
+    name: `감성 아이템 ${i + 1}호`,
+    price: `${(i + 1) * 1200}원`,
+    // 이미지가 무조건 나오도록 안정적인 주소를 사용했습니다
+    img: `https://picsum.photos/seed/${i + 100}/400/500` 
   }));
 
   return (
-    <div style={{ padding: '20px', backgroundColor: 'white' }}>
+    <div className="min-h-screen bg-[#FDFBF7] text-slate-600 font-sans pb-20">
       
-      {/* 🔴 여기가 빨간색으로 변해야 성공입니다 */}
-      <header style={{ 
-        backgroundColor: 'red', color: 'white', padding: '20px', 
-        textAlign: 'center', fontWeight: 'bold', marginBottom: '30px' 
-      }}>
-        <h1>🚨 이미지 긴급 복구 성공! (빨간색) 🚨</h1>
+      {/* 1. 헤더 (부드러운 화이트 & 연보라) */}
+      <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-100 h-16 flex items-center justify-between px-6 shadow-sm">
+        <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-[#8E86B5]">
+          <ShoppingBag className="h-6 w-6" /> MyPastelShop
+        </div>
+        <Link href="/login" className="px-5 py-2 bg-[#8E86B5] text-white rounded-full text-sm font-bold hover:bg-[#7A72A3] transition shadow-md">
+          로그인
+        </Link>
       </header>
 
-      {/* 상품 목록 */}
-      <div style={{ 
-        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' 
-      }}>
-        {products.map((p) => (
-          <Link href={`/product/${p.id}`} key={p.id} style={{ textDecoration: 'none', color: 'black' }}>
-            <div style={{ border: '1px solid #ddd', borderRadius: '10px', overflow: 'hidden' }}>
-              {/* 이미지 태그 */}
-              <img src={p.img} alt="상품" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              <div style={{ padding: '10px' }}>
-                <h3>{p.name}</h3>
-                <p style={{ color: 'blue' }}>{p.price}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
+      {/* 2. 메인 배너 (파스텔 그라데이션) */}
+      <div className="pt-32 pb-16 text-center px-4 bg-gradient-to-b from-
