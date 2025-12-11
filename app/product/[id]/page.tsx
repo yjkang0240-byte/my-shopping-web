@@ -4,16 +4,16 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ArrowLeft, Heart, ShoppingCart, Truck, ShieldCheck } from 'lucide-react';
 
-// 메인과 동일한 안정적인 데이터
+// [수정됨] 메인과 동일한 안전한 이미지 리스트
 const baseProducts = [
-  { name: '로얄 캐시미어 롱 코트', category: 'OUTER', price: '289,000원', img: 'https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?q=80&w=600&auto=format&fit=crop', desc: '최상급 울과 캐시미어 혼방으로 가볍고 따뜻합니다.' },
-  { name: '유니섹스 숏 패딩', category: 'OUTER', price: '159,000원', img: 'https://images.unsplash.com/photo-1551488852-0801751ac367?q=80&w=600&auto=format&fit=crop', desc: '트렌디한 핏의 덕다운 숏패딩입니다.' },
-  { name: '케이블 꽈배기 니트', category: 'TOP', price: '59,000원', img: 'https://images.unsplash.com/photo-1621335829175-95f437384d7c?q=80&w=600&auto=format&fit=crop', desc: '클래식한 케이블 짜임이 돋보이는 도톰한 니트입니다.' },
-  { name: '울 와이드 슬랙스', category: 'BOTTOM', price: '49,000원', img: 'https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?q=80&w=600&auto=format&fit=crop', desc: '한겨울에도 입기 좋은 두께감 있는 울 슬랙스입니다.' },
-  { name: '소프트 앙고라 비니', category: 'ACC', price: '25,000원', img: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?q=80&w=600&auto=format&fit=crop', desc: '포근한 앙고라 소재로 포인트를 주기 좋습니다.' },
-  { name: '체크 패턴 머플러', category: 'ACC', price: '35,000원', img: 'https://images.unsplash.com/photo-1547731030-cd126f44e9c5?q=80&w=600&auto=format&fit=crop', desc: '감성적인 컬러 배색의 체크 머플러입니다.' },
-  { name: '양털 플리스 자켓', category: 'OUTER', price: '89,000원', img: 'https://images.unsplash.com/photo-1559551409-dadc959f76b8?q=80&w=600&auto=format&fit=crop', desc: '귀엽고 따뜻한 양털 텍스처의 자켓입니다.' },
-  { name: '코듀로이 밴딩 팬츠', category: 'BOTTOM', price: '45,000원', img: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?q=80&w=600&auto=format&fit=crop', desc: '편안한 착용감의 코듀로이(골덴) 팬츠입니다.' },
+  { name: '로얄 캐시미어 롱 코트', category: 'OUTER', price: '289,000원', img: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?q=80&w=800&auto=format&fit=crop', desc: '최상급 울과 캐시미어 혼방으로 가볍고 따뜻합니다.' },
+  { name: '유니섹스 숏 패딩', category: 'OUTER', price: '159,000원', img: 'https://images.unsplash.com/photo-1544923246-77307dd654cb?q=80&w=800&auto=format&fit=crop', desc: '트렌디한 핏의 덕다운 숏패딩입니다.' },
+  { name: '케이블 꽈배기 니트', category: 'TOP', price: '59,000원', img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop', desc: '클래식한 케이블 짜임이 돋보이는 도톰한 니트입니다.' },
+  { name: '울 와이드 슬랙스', category: 'BOTTOM', price: '49,000원', img: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop', desc: '한겨울에도 입기 좋은 두께감 있는 울 슬랙스입니다.' },
+  { name: '소프트 앙고라 비니', category: 'ACC', price: '25,000원', img: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?q=80&w=800&auto=format&fit=crop', desc: '포근한 앙고라 소재로 포인트를 주기 좋습니다.' },
+  { name: '체크 패턴 머플러', category: 'ACC', price: '35,000원', img: 'https://images.unsplash.com/photo-1600091106787-88069ea79790?q=80&w=800&auto=format&fit=crop', desc: '감성적인 컬러 배색의 체크 머플러입니다.' },
+  { name: '양털 플리스 자켓', category: 'OUTER', price: '89,000원', img: 'https://images.unsplash.com/photo-1551028919-ac7675cf5c63?q=80&w=800&auto=format&fit=crop', desc: '귀엽고 따뜻한 양털 텍스처의 자켓입니다.' },
+  { name: '빈티지 데님 팬츠', category: 'BOTTOM', price: '45,000원', img: 'https://images.unsplash.com/photo-1584370848010-d7cc637703e6?q=80&w=800&auto=format&fit=crop', desc: '편안한 착용감의 데님 팬츠입니다.' },
 ];
 
 export default function ProductDetail() {
