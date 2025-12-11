@@ -1,66 +1,43 @@
 import React from 'react';
 import Link from 'next/link';
 
-// 상품 50개 생성 (이미지는 그대로 나옵니다)
-const generateProducts = () => {
-  const categories = [
-    { name: '캐시미어 니트', price: '49,900원', img: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600&auto=format&fit=crop' },
-    { name: '천연 가죽 백', price: '129,000원', img: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=600&auto=format&fit=crop' },
-    { name: '러닝 스니커즈', price: '89,000원', img: 'https://images.unsplash.com/photo-1560769629-975e13f0c470?q=80&w=600&auto=format&fit=crop' },
-    { name: '데님 자켓', price: '79,000원', img: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=600&auto=format&fit=crop' },
-    { name: '아날로그 시계', price: '159,000원', img: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=600&auto=format&fit=crop' },
-  ];
-
-  return Array.from({ length: 50 }).map((_, i) => {
-    const category = categories[i % categories.length];
-    return {
-      id: i + 1,
-      name: `${category.name} ${i + 1}호`,
-      price: category.price,
-      img: category.img,
-    };
-  });
-};
-
-const products = generateProducts();
-
 export default function Home() {
+  // 강제로 사진 50개 생성 (인터넷에 있는 랜덤 이미지 끌어오기)
+  const products = Array.from({ length: 50 }).map((_, i) => ({
+    id: i + 1,
+    name: `상품 ${i + 1}호`,
+    price: `${(i + 1) * 1000}원`,
+    // 이 주소는 무조건 이미지가 나옵니다
+    img: `https://picsum.photos/seed/${i + 1}/300/300`
+  }));
+
   return (
-    <div className="min-h-screen bg-white text-black font-sans pb-20">
+    <div style={{ padding: '20px', backgroundColor: 'white' }}>
       
-      {/* 헤더 */}
-      <header className="fixed w-full bg-white border-b border-gray-200 h-16 flex items-center justify-between px-6 z-50">
-        <div className="font-bold text-xl text-blue-600">
-           MyPastelShop (상품 50개)
-        </div>
-        <Link href="/login" className="px-4 py-2 bg-black text-white rounded text-sm font-bold">
-          로그인
-        </Link>
+      {/* 🔴 여기가 빨간색으로 변해야 성공입니다 */}
+      <header style={{ 
+        backgroundColor: 'red', color: 'white', padding: '20px', 
+        textAlign: 'center', fontWeight: 'bold', marginBottom: '30px' 
+      }}>
+        <h1>🚨 이미지 긴급 복구 성공! (빨간색) 🚨</h1>
       </header>
 
-      {/* 제목 */}
-      <div className="pt-32 pb-10 text-center px-4">
-        <h1 className="text-3xl font-extrabold mb-4">Winter Collection</h1>
-        <p className="text-gray-500">총 50개의 상품이 진열되었습니다.</p>
-      </div>
-
       {/* 상품 목록 */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <Link href={`/product/${product.id}`} key={product.id} className="block group">
-              <div className="aspect-[3/4] w-full overflow-hidden rounded-lg bg-gray-100 mb-2">
-                <img 
-                  src={product.img} 
-                  alt={product.name} 
-                  className="h-full w-full object-cover group-hover:scale-105 transition"
-                />
+      <div style={{ 
+        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' 
+      }}>
+        {products.map((p) => (
+          <Link href={`/product/${p.id}`} key={p.id} style={{ textDecoration: 'none', color: 'black' }}>
+            <div style={{ border: '1px solid #ddd', borderRadius: '10px', overflow: 'hidden' }}>
+              {/* 이미지 태그 */}
+              <img src={p.img} alt="상품" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+              <div style={{ padding: '10px' }}>
+                <h3>{p.name}</h3>
+                <p style={{ color: 'blue' }}>{p.price}</p>
               </div>
-              <h3 className="text-sm font-bold">{product.name}</h3>
-              <p className="text-sm text-gray-500">{product.price}</p>
-            </Link>
-          ))}
-        </div>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
